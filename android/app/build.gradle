@@ -1,5 +1,6 @@
 apply plugin: "com.android.application"
 apply plugin: "com.facebook.react"
+apply plugin: "com.google.gms.google-services"
 
 import com.android.build.OutputFile
 
@@ -132,9 +133,9 @@ android {
     }
     signingConfigs {
         debug {
-            storeFile file('debug.keystore')
+            storeFile file('my-upload-key.keystore')
             storePassword 'android'
-            keyAlias 'androiddebugkey'
+            keyAlias 'my-key-alias'
             keyPassword 'android'
         }
     }
@@ -189,6 +190,12 @@ android {
 }
 
 dependencies {
+    // Import the Firebase BoM
+    implementation platform('com.google.firebase:firebase-bom:31.2.2')
+    implementation ('com.google.firebase:firebase-auth')
+
+    implementation 'com.facebook.android:facebook-android-sdk:latest.release'
+
     // The version of react-native is set by the React Native Gradle Plugin
     implementation("com.facebook.react:react-android")
 
